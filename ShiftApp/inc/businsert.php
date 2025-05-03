@@ -16,7 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $route_id = $result[0]['id']; // Get the id (route_id)
 
             // Insert the new record into the "detected_buses" table
-            $sql = "INSERT INTO detected_buses (route_id, lat, lng) VALUES ('$route_id', '$lat', '$lng')";
+            $sql = "UPDATE detected_buses 
+            SET lat = '$lat', lng = '$lng' 
+            WHERE route_id = '$route_id'";
+
             $insertResult = my_query($sql, $conn);
 
             if ($insertResult) {

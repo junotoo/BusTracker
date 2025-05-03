@@ -4,6 +4,7 @@ const routeIdMapping: Record<number, string> = {
   5: '5',
   7: '38',
 };
+
 export const fetchBusData = async () => {
   try {
     console.log("Starting fetchBusData...");

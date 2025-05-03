@@ -10,9 +10,10 @@ interface MapBoxProps {
   buses: Bus[];
   selectedBus: Bus | null;
   onBusSelect: (bus: Bus | null) => void;
+  routeCoordinates: [number, number][]; // Add this prop to handle route coordinates
 }
 
-const MapBox: React.FC<MapBoxProps> = ({ buses, selectedBus, onBusSelect }) => {
+const MapBox: React.FC<MapBoxProps> = ({ buses, selectedBus, onBusSelect, routeCoordinates }) => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const userMarkerRef = useRef<mapboxgl.Marker | null>(null);
@@ -126,7 +127,7 @@ const MapBox: React.FC<MapBoxProps> = ({ buses, selectedBus, onBusSelect }) => {
         },
         {
           enableHighAccuracy: true,
-          timeout: 10000,
+          timeout: 6000,
           maximumAge: 0
         }
       );
@@ -220,6 +221,51 @@ const MapBox: React.FC<MapBoxProps> = ({ buses, selectedBus, onBusSelect }) => {
       speed: 1.2
     });
   }, [selectedBus]);
+
+  useEffect(() => {
+    if (!map.current || routeCoordinates.length === 0) return;
+
+    const routeLayerId = 'route-layer';
+
+    // Remove existing route layer if it exists
+    if (map.current.getLayer(routeLayerId)) {
+      map.current.removeLayer(routeLayerId);
+      map.current.removeSource(routeLayerId);
+    }
+
+    map.current.addSource(routeLayerId, {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: routeCoordinates,
+        },
+        properties: {},
+      },
+    });
+
+    map.current.addLayer({
+      id: routeLayerId,
+      type: 'line',
+      source: routeLayerId,
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+      },
+      paint: {
+        'line-color': '#67c2f0',
+        'line-width': 4,
+      },
+    });
+
+    // Fit the map to the route
+    const bounds = routeCoordinates.reduce(
+      (bounds, coord) => bounds.extend(coord),
+      new mapboxgl.LngLatBounds(routeCoordinates[0], routeCoordinates[0])
+    );
+    map.current.fitBounds(bounds, { padding: 20 });
+  }, [routeCoordinates]);
 
   return <div ref={mapContainer} className="w-full h-full rounded-lg shadow-lg" />;
 };

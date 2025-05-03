@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Bus } from '@/types';
 import { Button } from '@/components/ui/button';
@@ -9,9 +8,10 @@ import { Badge } from '@/components/ui/badge';
 interface BusDetailProps {
   bus: Bus;
   onClose: () => void;
+  onGetDirections: () => void;
 }
 
-const BusDetail: React.FC<BusDetailProps> = ({ bus, onClose }) => {
+const BusDetail: React.FC<BusDetailProps> = ({ bus, onClose, onGetDirections }) => {
   return (
     <div className="absolute bottom-4 left-4 right-4 z-10 animate-fade-in">
       <Card>
@@ -42,7 +42,7 @@ const BusDetail: React.FC<BusDetailProps> = ({ bus, onClose }) => {
         
         </CardContent>
         <CardFooter>
-          <Button className="w-full">
+          <Button className="w-full" onClick={onGetDirections}>
             Get Directions
           </Button>
         </CardFooter>
