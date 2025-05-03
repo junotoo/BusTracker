@@ -1,0 +1,192 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.login-container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    width: 350px;
+    transition: all 0.3s ease-in-out;
+}
+
+h1 {
+    color: #1E3A8A;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+h1 img {
+    width: 170px; 
+    display: block;
+    margin: 0 auto 20px; 
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #1E3A8A;
+    border-radius: 8px;
+    padding: 8px;
+    width: 90%;
+    margin: 12px auto;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+    .input-group img {
+        width: 22px;
+        height: 22px;
+        margin-left: 10px;
+        opacity: 0.7;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .input-group input {
+        border: none;
+        outline: none;
+        flex: 1;
+        padding: 12px;
+        font-size: 16px;
+        background: transparent;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Efeito quando o input está focado */
+    .input-group:has(input:focus) {
+        border-color: #163172;
+        box-shadow: 0px 0px 10px rgba(30, 58, 138, 0.5);
+    }
+
+        /* Efeito nos ícones ao focar */
+        .input-group:has(input:focus) img {
+            opacity: 1;
+        }
+
+
+button {
+    margin-top: 0px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #1E3A8A, #163172);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+    button:hover {
+        background: linear-gradient(135deg, #163172, #0f2557);
+        transform: translateY(-2px);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+.forgot-password {
+    margin-top: 12px;
+    color: #1E3A8A;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease-in-out;
+}
+
+    .forgot-password:hover {
+        color: #163172;
+        text-decoration: none;
+    }
+
+
+.navbar {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #5c83f2, #2951c4);
+    padding: 15px 30px;
+    color: white;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 120px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.lang-switch {
+    margin-top: 0px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    .lang-switch img {
+        width: 20px;
+        height: 20px;
+    }
+    .lang-switch:hover {
+        background: none;
+        box-shadow: none;
+    }
+
+.user-name {
+    font-weight: bold;
+}
+
+.container {
+    width: 80%;
+    margin: 100px auto 40px; 
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background: #1E3A8A;
+    color: white;
+}
+td {
+    text-align: center; 
+    vertical-align: middle;
+}
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
